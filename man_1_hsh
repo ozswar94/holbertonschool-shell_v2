@@ -1,0 +1,41 @@
+.\" Manpage for simple_shell
+
+.TH man 1 "6 December 2021" "1.0" "simple_shell man page"
+
+.SH NAME
+simple_shell – reads lines from standard input, and execute the commands.
+
+.SH SYNOPSIS
+dash [-aCefnuvxIimqVEbp] [+aCefnuvxIimqVEbp] [-o option_name] [+o option_name] [command_file [argument ...]]
+
+.SH DESCRIPTION
+Excute the shell command typed including the option. If you set the PATH, it will be excuted in the path.
+If you enter the wrong command or the command doesn’t exist, it displays "No such file or directory".
+When you want to exit the shell, enter exit.
+
+.SH EXAMPLES
+	./shell
+	$ ls
+	barbie_j  env-main.c  exec.c  fork.c  pid.c  ppid.c  prompt  prompt.c  shell.c  stat.c   wait
+	env-environ.c  exec  fork  mypid  ppid  printenv  promptc  shell stat test_scripting.sh  wait.c
+	$ /bin/ls -l
+	./shell: No such file or directory
+	$ ^[[D^[[D^[[D
+	./shell: No such file or directory
+	$ ^[[C^[[C^[[C^[[C
+	./shell: No such file or directory
+	$ exit
+	./shell: No such file or directory
+	$ exit
+
+
+.SH SEE ALSO
+man sh
+
+.SH AUTHOR
+
+ozswar94 - https://github.com/ozswar94/simple_shell
+
+Anna 78990 - https://github.com/Anna78990
+
+NeoV0id - https://github.com/NeoV0id
