@@ -10,7 +10,7 @@
 * @name: name of program
 * Return: 0 if success
 */
-int print_env(char **command, char *line, int counter, char *name)
+int print_env(command_t *command, char *line, int counter, char *name)
 {
 	int i = 0;
 

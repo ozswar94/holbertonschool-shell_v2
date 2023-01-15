@@ -10,15 +10,13 @@
 */
 int _atoi(const char *str)
 {
-	int i;
-	int nbr;
-	int unit;
+	int i = 0;
+	int nbr = 0;
+	int unit = 1;
 
 	if (str == NULL)
 		return (0);
-	nbr = 0;
-	unit = 1;
-	i = 0;
+
 	while (str[i + 1])
 	{
 		if (_isalpha(str[i]) == 1)

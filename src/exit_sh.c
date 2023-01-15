@@ -12,20 +12,24 @@
 * @name: name of program
 * Return: 2 if error exit
 */
-int exit_sh(char **command, char *line, int counter, char *name)
+int exit_sh(command_t *command, char *line, int counter, char *name)
 {
-	int status = 0;
+	int status;
 
-	status = _atoi(command[1]);
-	if (status >= 0 || command[1] == NULL)
+	if (_strlen_2d(command->command_argument))
+		status = _atoi(command->command_argument[1]);
+	else
+		status = 0;
+
+	if (status >= 0)
 	{
 		free(line);
-		free_dptr(command);
+		delete_command(&command);
 		exit(status);
 	}
 	else
 	{
-		error_exit(name, command, counter);
+		error_exit(name, command->command_argument, counter);
 	}
 	return (2);
 }

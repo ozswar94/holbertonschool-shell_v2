@@ -7,113 +7,83 @@
 #include <signal.h>
 #include "shell.h"
 #include "error.h"
+#include "shell_lexer.h"
 
 /**
-* handler_ctrlc - manage ctrl + c
-* @c: void
-*/
-void handler_ctrlc(int c)
-{
-	(void)c;
-	_putchar('\n');
-	prompt();
-}
-
-
-/**
-* clean_line - remove char newline in line and replace \t to space
-* @line: line of command
-*
-*/
-void clean_line(char *line)
-{
-	unsigned int i;
-	unsigned int size;
-
-	size = _strlen(line) - 1;
-	if (line[size] == '\n')
-		line[size] = '\0';
-
-	for (i = 0; line[i] != '\0'; i++)
-		if (line[i] == '\t')
-			line[i] = ' ';
-}
-
-
-/**
-* simple_shell - main function for run simple_shell
+* hsh - main function for run hsh
 * @name: name of programme
 *
 * Return: 2 if EOF, 0 Normaly
 */
-int simple_shell(char *name)
+int hsh(char *name)
 {
 	char *line = NULL;
-	char *command_path = NULL;
-	char **command = NULL;
 	size_t len_line = 0;
-	int counter = 1;
-	int error_command = 0;
+	token_shell_t *token = NULL;
+	int counter = 1, error_command = 0;
+	command_t *command = NULL, *command_tmp;
 
 	do {
-		prompt();/*show the promt*/
+		prompt(); /*show the promt*/
 		signal(SIGINT, handler_ctrlc); /*handle sinal ctrl + c*/
 		if (getline(&line, &len_line, stdin) == EOF)
 		{
 			free(line);
-			return (error_command);
+			delete_command(&command);
+			return (-1);
 		}
-		clean_line(line); /*remove new line and tab*/
-		command = _strsplit(line, ' '); /*split word by word*/
-		if (command == NULL)
-			continue;
-		error_command = check_built_in(command, line, counter, name);
-		if (error_command < 0)
+		token = tokenize(line);
+		command = interpret_token(&token);
+		command_tmp = command;
+		while (command_tmp)
 		{
-			command_path = search_path(command[0]); /*search in $PATH*/
-			if (command_path != NULL)
+			error_command = check_built_in(command_tmp, line, counter, name);
+			if (error_command < 0)
 			{
-				run_command(command_path, command, environ);
-				error_command = 0;
+				command->command_path = search_path(command->command_name);
+				if (command->command_path != NULL)
+					error_command  = run_command(command_tmp, environ);
+				else
+					error_not_found(name, command->command_argument, counter);
 			}
-			else
-			{
-				error_not_found(name, command, counter);
-				error_command = 2;
-			}
+			command_tmp = command_tmp->next;
 		}
-		free_dptr(command);
+		delete_command(&command);
 	} while (counter++);
-
 	return (0);
 }
 
 
 /**
 * run_command - run command in new processus
-* @command_path: absolute path of file
 * @command: the line with argument
 * @env: environ variable
-*
+* Return: status
 */
-void run_command(char *command_path, char **command, char **env)
+int run_command(command_t *command, char **env)
 {
 	pid_t child;
 	int status;
 
+	if (command->command_path == NULL || command->command_argument == NULL)
+		return (-1);
+
 	child = fork();
 	if (child == 0)
 	{
-		if (execve(command_path, command, env) == (-1))
+		dup2(command->fd, STDOUT_FILENO);
+		if ((execve(command->command_path, command->command_argument, env)) == -1)
 		{
 			perror("Error:");
-			exit(2);
+			exit(status);
 		}
 		exit(EXIT_SUCCESS);
 	}
 	else
 	{
+		if (command->fd > 2)
+			close(command->fd);
 		wait(&status);
-		free(command_path);
 	}
+	return (status);
 }

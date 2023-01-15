@@ -12,7 +12,7 @@
 * @name: name of program
 * Return: 0 Success, 2 if error
 */
-int help(char **command, char *line, int counter, char *name)
+int help(command_t *command, char *line, int counter, char *name)
 {
 	int i = 0;
 	help_t tab_help[] = {
@@ -25,14 +25,14 @@ int help(char **command, char *line, int counter, char *name)
 
 	while (tab_help[i].name[0] != '\0')
 	{
-		if (_strcmp(tab_help[i].name, command[1]) == 0)
+		if (_strcmp(tab_help[i].name, command->command_argument[1]) == 0)
 		{
 			tab_help[i].help();
 			return (0);
 		}
 		i++;
 	}
-	return (error_help(name, command, counter));
+	return (error_help(name, command->command_argument, counter));
 }
 
 /**

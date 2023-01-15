@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 
 	(void)argc;
 	/*run simple shell*/
-	status = simple_shell(argv[0]);
+	status = hsh(argv[0]);
 
 	return (status);
 }

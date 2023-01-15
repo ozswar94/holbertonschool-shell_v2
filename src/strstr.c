@@ -13,6 +13,10 @@ char *_strstr(char *haystack, char *needle)
 	unsigned int j;
 	unsigned int len_needle = _strlen(needle);
 
+
+	if (haystack == NULL || needle == NULL)
+		return (NULL);
+
 	i = 0;
 	while (haystack[i])
 	{

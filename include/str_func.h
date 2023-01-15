@@ -3,6 +3,7 @@
 
 #include <stddef.h>
 
+void removeChar(char *str, char garbage);
 char *_getnbr(int nb);
 int _atoi(const char *str);
 int _isdigit(int c);
@@ -19,6 +20,8 @@ char **_strsplit(char *str, int c);
 int _strcmp(char *s1, char *s2);
 char *_strncpy(char *dest, char *src, int n);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void free_dptr(char **ptr);
+unsigned int _strlen_2d(char **s);
 
 #endif /*STR_FUNC_H*/
 

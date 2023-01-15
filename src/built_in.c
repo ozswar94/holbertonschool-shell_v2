@@ -10,7 +10,7 @@
 *
 * Return: 1 if the command is a built-in else -1 not a built-in
 */
-int check_built_in(char **command, char *line, int counter, char *name)
+int check_built_in(command_t *command, char *line, int counter, char *name)
 {
 	int i = 0;
 	built_in_t command_built_in[] = {
@@ -23,8 +23,8 @@ int check_built_in(char **command, char *line, int counter, char *name)
 
 	while (command_built_in[i].command[0])
 	{
-		if (_strcmp(command_built_in[i].command, command[0]) == 0 &&
-			_strlen(command_built_in[i].command) == _strlen(command[0]))
+		if (_strcmp(command_built_in[i].command, command->command_name) == 0 &&
+		_strlen(command_built_in[i].command) == _strlen(command->command_name))
 		{
 			return (command_built_in[i].built_in(command, line, counter, name));
 		}

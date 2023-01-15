@@ -14,26 +14,26 @@
 * @name: name of program
 * Return: 2 if error otherwise 0
 */
-int change_directory(char **command, char *line, int counter, char *name)
+int change_directory(command_t *command, char *line, int counter, char *name)
 {
 	char path[PATH_MAX];
 
 	(void)line;
 	getcwd(path, PATH_MAX);
 
-	if (!command[1])
+	if (!command->command_argument[1])
 	{
 		_setenv("OLDPWD", path);
 		chdir(_getenv("HOME"));
 	}
-	else if (_strstr("-", command[1]))
+	else if (_strstr("-", command->command_argument[1]))
 	{
 		chdir(_getenv("OLDPWD"));
 		_setenv("OLDPWD", path);
 	}
 	else
 	{
-		if (chdir(command[1]) < 0)
+		if (chdir(command->command_argument[1]) < 0)
 		{
 			error_message_cd(name, counter);
 			return (2);

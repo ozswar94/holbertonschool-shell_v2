@@ -1,19 +1,19 @@
-.\" Manpage for simple_shell
+.\" Manpage for hsh
 
 .TH man 1 "6 December 2021" "1.0" "simple_shell man page"
 
-.SH NAME
-simple_shell – reads lines from standard input, and execute the commands.
+.HSH NAME
+hsh – reads lines from standard input, and execute the commands.
 
-.SH SYNOPSIS
+.HSH SYNOPSIS
 dash [-aCefnuvxIimqVEbp] [+aCefnuvxIimqVEbp] [-o option_name] [+o option_name] [command_file [argument ...]]
 
-.SH DESCRIPTION
+.HSH DESCRIPTION
 Excute the shell command typed including the option. If you set the PATH, it will be excuted in the path.
 If you enter the wrong command or the command doesn’t exist, it displays "No such file or directory".
 When you want to exit the shell, enter exit.
 
-.SH EXAMPLES
+.HSH EXAMPLES
 	./shell
 	$ ls
 	barbie_j  env-main.c  exec.c  fork.c  pid.c  ppid.c  prompt  prompt.c  shell.c  stat.c   wait
@@ -29,13 +29,9 @@ When you want to exit the shell, enter exit.
 	$ exit
 
 
-.SH SEE ALSO
+.HSH SEE ALSO
 man sh
 
-.SH AUTHOR
+.HSH AUTHOR
 
-ozswar94 - https://github.com/ozswar94/simple_shell
-
-Anna 78990 - https://github.com/Anna78990
-
-NeoV0id - https://github.com/NeoV0id
+ozswar94 - https://github.com/ozswar94/holbertonschool-shell_v2

@@ -10,15 +10,13 @@
 */
 void free_dptr(char **ptr)
 {
-	int i;
+	unsigned int i;
 
-	i = 0;
-	while (ptr[i])
-	{
+	for (i = 0; ptr[i] != NULL; i++)
 		free(ptr[i]);
-		i++;
-	}
+
 	free(ptr);
+	ptr = NULL;
 }
 
 
@@ -30,10 +28,13 @@ void free_dptr(char **ptr)
 */
 char *search_path(char *command)
 {
-	int i;
+	int i = 0;
 	struct stat buf;
 	char *command_path = NULL;
 	char **path_directory = NULL;
+
+	if (command == NULL)
+		return (NULL);
 
 	if (_strchr(command, '/') != NULL)
 	{
@@ -45,12 +46,9 @@ char *search_path(char *command)
 			return (command_path);
 		return (NULL);
 	}
-
 	path_directory = _strsplit(_getenv("PATH"), ':');
 	if (path_directory == NULL)
 		return (NULL);
-
-	i = 0;
 	while (path_directory[i] != NULL)
 	{
 		command_path = malloc(_strlen(command) + _strlen(path_directory[i]) + 2);
