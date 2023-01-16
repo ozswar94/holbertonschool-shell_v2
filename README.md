@@ -70,7 +70,6 @@ $
 $ exit
 $
 ```
-
 #### But also in non-interactive mode:
 (example)
 ```
