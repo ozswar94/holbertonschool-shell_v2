@@ -1,8 +1,6 @@
 # Shell v2
-
 ### Restrictions
 List of allowed functions and system calls
-
 - access
 - chdir
 - close
@@ -90,7 +88,6 @@ $
 ```
 
 ## Project made by:
-
 - Jordan MPOUNZA - https://github.com/ozswar94
 
 ## Social Networks
