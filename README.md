@@ -50,7 +50,7 @@ List of allowed functions and system calls
 - vfprintf
 - sprintf
 
-### Compilation
+## Compilation
 ```
 make
 ```
@@ -86,7 +86,7 @@ hsh main.c shell.c test_ls_2
 $
 ```
 
-## Project made by:
+## Project made by
 - Jordan MPOUNZA - https://github.com/ozswar94
 
 ## Social Networks
