@@ -1,5 +1,5 @@
 # Shell v2
-### Restrictions
+## Restrictions
 List of allowed functions and system calls
 - access
 - chdir
