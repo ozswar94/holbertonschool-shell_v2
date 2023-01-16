@@ -61,7 +61,6 @@ make
 
 ## Testing
 #### This shell should work like this in interactive mode:
-(example)
 ```
 $ ./hsh
 $ /bin/ls
@@ -71,7 +70,6 @@ $ exit
 $
 ```
 #### But also in non-interactive mode:
-(example)
 ```
 $ echo "/bin/ls" | ./hsh
 hsh main.c shell.c test_ls_2
