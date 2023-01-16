@@ -58,7 +58,7 @@ List of allowed functions and system calls
 ```
 make
 ```
-compilation option
+#### Compilation option
 ```
 -Wall -Werror -Wextra -pedantic -std=gnu89
 ```
