@@ -59,7 +59,7 @@ make
 -Wall -Werror -Wextra -pedantic -std=gnu89
 ```
 ## Algorithm
-![Screenshot](algo.png)
+![Screenshot](Algo.png)
 
 ## Testing
 #### This shell should work like this in interactive mode:
