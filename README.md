@@ -58,6 +58,8 @@ make
 ```
 -Wall -Werror -Wextra -pedantic -std=gnu89
 ```
+## Algorithm
+![Screenshot](screenshot.png)
 
 ## Testing
 #### This shell should work like this in interactive mode:
