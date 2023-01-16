@@ -1,6 +1,5 @@
 # holbertonschool-shell_v2
-Simple shell v2
-
+Shell v2
 
 ### Restrictions
 List of allowed functions and system calls
